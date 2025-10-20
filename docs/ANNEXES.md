@@ -11,7 +11,8 @@
 1. [Annexe A : Architecture BLoC - Extraits de Code](#annexe-a--architecture-bloc---extraits-de-code)
 2. [Annexe B : Method Channels - Implémentation](#annexe-b--method-channels---implémentation)
 3. [Annexe C : Diagrammes d'Architecture](#annexe-c--diagrammes-darchitecture)
-4. [Annexe D : Liste de Ressources](#annexe-d--liste-de-ressources)
+4. [Annexe D : Captures d'écran de l'application](#annexe-d--captures-décran-de-lapplication)
+5. [Annexe E : Liste de Ressources](#annexe-e--liste-de-ressources)
 
 ---
 
@@ -802,9 +803,140 @@ Update UI
 
 ---
 
-## Annexe D : Liste de Ressources
+## Annexe D : Captures d'écran de l'application
 
-### D.1 - Documentation Officielle
+### D.1 - Page d'accueil
+
+![Page d'accueil](../captures/IMG-20251020-WA0001.jpg)
+
+**Description :** Écran d'accueil de l'application présentant les deux modules de démonstration :
+- **BLoC Pattern** : Gestion d'état avec flutter_bloc
+- **Method Channels** : Communication Flutter ↔ Code natif
+
+**Éléments visibles :**
+- Titre et description du projet
+- Cartes de navigation avec icônes
+- Liste des fonctionnalités (chips)
+- Footer avec référence au rapport de stage
+
+---
+
+### D.2 - Démonstration BLoC Pattern (Compteur)
+
+![BLoC Pattern - Compteur](../captures/IMG-20251020-WA0002.jpg)
+
+**Description :** Interface du compteur implémenté avec l'architecture BLoC.
+
+**Fonctionnalités démontrées :**
+- Affichage de la valeur actuelle du compteur
+- Boutons d'incrémentation (+) et de décrémentation (-)
+- Bouton de réinitialisation (icône refresh)
+- Affichage de l'horodatage de la dernière modification
+- Bouton pour définir une valeur personnalisée
+
+**Architecture visible :**
+- BlocBuilder reconstruit l'UI automatiquement
+- États immutables (CounterValue)
+- Événements (CounterIncremented, CounterDecremented, CounterReset)
+
+---
+
+### D.3 - Gestion des erreurs et validation
+
+![BLoC Pattern - Validation](../captures/IMG-20251020-WA0003.jpg)
+
+**Description :** Gestion des erreurs avec affichage de SnackBar.
+
+**Fonctionnalités démontrées :**
+- Validation des limites (min: 0, max: 100)
+- Affichage d'erreur via BlocListener
+- Message "Valeur maximale atteinte" ou "Valeur minimale atteinte"
+- Indicateurs visuels (Chip "Maximum atteint" ou "Minimum atteint")
+- Changement de couleur selon l'état
+
+**Concepts BLoC illustrés :**
+- BlocListener pour les effets secondaires (SnackBar)
+- Gestion d'état CounterError
+- Validation dans la logique métier
+
+---
+
+### D.4 - Method Channels - Informations système
+
+![Method Channels - Infos système](../captures/IMG-20251020-WA0004.jpg)
+
+**Description :** Récupération des informations système depuis le code natif Android via Method Channels.
+
+**Données affichées :**
+- Plateforme : Android
+- Version : Version d'Android
+- SDK : Niveau de l'API Android
+- Manufacturer : Fabricant du téléphone
+- Model : Modèle du téléphone
+- Device : Nom du device
+- Brand : Marque
+
+**Flux de communication :**
+```
+Flutter → MethodChannel('getSystemInfo') → Android
+Android → Build.VERSION.* → Résultat
+Résultat → Flutter → Affichage dans l'UI
+```
+
+**Fichiers impliqués :**
+- `lib/core/channels/platform_channel.dart` : Appel Flutter
+- `android/.../MainActivity.kt` : Traitement Android
+
+---
+
+### D.5 - Niveau de batterie et traitement de données
+
+![Method Channels - Batterie](../captures/IMG-20251020-WA0005.jpg)
+
+**Description :** Démonstration de plusieurs fonctionnalités Method Channels.
+
+**Fonctionnalités visibles :**
+
+#### 1. Niveau de batterie
+- Récupération du niveau de batterie via BatteryManager (Android)
+- Affichage en pourcentage avec icône
+- Horodatage de la dernière vérification
+
+#### 2. Traitement de données natives
+- Envoi de données (message + nombre) depuis Flutter
+- Traitement dans le code natif Android :
+  - Conversion du message en majuscules
+  - Multiplication du nombre par 2
+  - Ajout d'un timestamp
+- Affichage du résultat :
+  - originalMessage / processedMessage
+  - originalCount / processedCount
+  - timestamp
+  - processedBy: "Android Native Code"
+
+**Concepts démontrés :**
+- Communication bidirectionnelle Flutter ↔ Native
+- Passage de paramètres complexes (Map)
+- Traitement natif et retour du résultat
+- Gestion d'état avec NativeBloc
+
+---
+
+### D.6 - Tableau récapitulatif des captures
+
+| # | Écran | Concept démontré | Fichiers principaux |
+|---|-------|------------------|---------------------|
+| **1** | Page d'accueil | Navigation, architecture modulaire | `lib/main.dart` |
+| **2** | Compteur BLoC | Events, States, BlocBuilder | `features/counter/bloc/` |
+| **3** | Validation BLoC | BlocListener, gestion d'erreurs | `features/counter/bloc/counter_bloc.dart` |
+| **4** | Infos système | MethodChannel, code natif | `core/channels/platform_channel.dart`<br>`MainActivity.kt` |
+| **5** | Batterie & Données | Communication bidirectionnelle | `features/native_communication/` |
+
+---
+
+## Annexe E : Liste de Ressources
+
+### E.1 - Documentation Officielle
 
 #### Flutter
 - **Site officiel** : https://flutter.dev/
@@ -820,7 +952,7 @@ Update UI
 - **Documentation** : https://docs.flutter.dev/platform-integration/platform-channels
 - **Cookbook** : https://docs.flutter.dev/cookbook
 
-### D.2 - Articles et Tutoriels
+### E.2 - Articles et Tutoriels
 
 #### BLoC Pattern
 1. **"Flutter BLoC Pattern: The Complete Guide"**
@@ -849,7 +981,7 @@ Update UI
    - URL : https://docs.flutter.dev/platform-integration
    - Niveau : Intermédiaire
 
-### D.3 - Livres Recommandés
+### E.3 - Livres Recommandés
 
 1. **"Flutter Complete Reference"**
    - Auteur : Alberto Miola
@@ -869,7 +1001,7 @@ Update UI
    - ISBN : 978-1617296147
    - Chapitres pertinents : 7, 10
 
-### D.4 - Vidéos et Cours
+### E.4 - Vidéos et Cours
 
 #### YouTube
 1. **Flutter BLoC - Official Tutorial Series**
@@ -892,7 +1024,7 @@ Update UI
    - Plateforme : Pluralsight
    - Sections : Architecture Patterns, Native Integration
 
-### D.5 - Outils et Packages
+### E.5 - Outils et Packages
 
 #### Packages Flutter Essentiels
 ```yaml
@@ -920,7 +1052,7 @@ mocktail: ^1.0.1
 - **Android Studio / VS Code** : IDEs recommandés
 - **Dart Code Metrics** : Analyse de code
 
-### D.6 - Communautés et Support
+### E.6 - Communautés et Support
 
 #### Forums et Discussions
 - **Stack Overflow** : Tag [flutter], [flutter-bloc]
@@ -933,7 +1065,7 @@ mocktail: ^1.0.1
 - **Very Good Ventures Blog** : https://verygood.ventures/blog
 - **Reso Coder** : https://resocoder.com
 
-### D.7 - Dépôts GitHub de Référence
+### E.7 - Dépôts GitHub de Référence
 
 1. **Flutter Bloc Examples**
    - URL : https://github.com/felangel/bloc/tree/master/examples

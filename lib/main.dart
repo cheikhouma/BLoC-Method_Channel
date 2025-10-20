@@ -3,6 +3,8 @@
 /// Ce projet démontre :
 /// 1. L'architecture BLoC pour la gestion d'état
 /// 2. Les Method Channels pour la communication Flutter-Native
+library;
+
 import 'package:flutter/material.dart';
 import 'features/counter/view/counter_page.dart';
 import 'features/native_communication/view/native_page.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'BLoC Architecture Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const HomePage(),
@@ -36,7 +38,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Architecture BLoC & Method Channels'),
+        title: const Text(
+          'Archi BLoC & Method Channels',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Padding(
@@ -59,17 +65,16 @@ class HomePage extends StatelessWidget {
                     const SizedBox(height: 16),
                     Text(
                       'Projet de Démonstration',
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Migration d\'une application native vers Flutter',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.grey[600],
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -82,9 +87,9 @@ class HomePage extends StatelessWidget {
             // Section Démos
             Text(
               'Démonstrations',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
 
@@ -132,10 +137,7 @@ class HomePage extends StatelessWidget {
             Center(
               child: Text(
                 'Rapport de Stage - Migration Flutter',
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 12,
-                ),
+                style: TextStyle(color: Colors.grey[500], fontSize: 12),
               ),
             ),
           ],
@@ -182,16 +184,13 @@ class HomePage extends StatelessWidget {
                     Text(
                       title,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: Colors.grey[600], fontSize: 12),
                     ),
                     const SizedBox(height: 8),
                     Wrap(
@@ -205,7 +204,8 @@ class HomePage extends StatelessWidget {
                           ),
                           backgroundColor: color.withOpacity(0.1),
                           padding: EdgeInsets.zero,
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
                         );
                       }).toList(),
                     ),

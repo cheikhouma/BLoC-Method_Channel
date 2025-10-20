@@ -14,6 +14,7 @@ Ce projet Flutter démontre concrètement l'implémentation de deux concepts fon
 - [Architecture du Projet](#architecture-du-projet)
 - [Architecture BLoC](#architecture-bloc)
 - [Method Channels](#method-channels)
+- [Captures d'écran](#captures-décran)
 - [Installation](#installation)
 - [Utilisation](#utilisation)
 - [Structure des Fichiers](#structure-des-fichiers)
@@ -56,7 +57,7 @@ ios/
 
 ---
 
-## 🔵 Architecture BLoC
+## 1. Architecture BLoC
 
 ### Qu'est-ce que le pattern BLoC ?
 
@@ -305,7 +306,7 @@ class CounterView extends StatelessWidget {
 
 ---
 
-## 🟢 Method Channels
+## 2. Method Channels
 
 ### Qu'est-ce qu'un Method Channel ?
 
@@ -556,6 +557,51 @@ EventChannel(flutterEngine.dartExecutor.binaryMessenger, EVENT_CHANNEL)
 | `String` | `String` | `String` |
 | `List` | `List` | `Array` |
 | `Map` | `Map` | `Dictionary` |
+
+---
+
+## 📸 Captures d'écran
+
+### Page d'accueil
+
+<div align="center">
+  <img src="captures/IMG-20251020-WA0002.jpg" alt="Page d'accueil" width="300"/>
+  <p><i>Écran d'accueil avec navigation vers les deux démonstrations</i></p>
+</div>
+
+### Démonstration BLoC Pattern
+
+<div align="center">
+  <img src="captures/IMG-20251020-WA0003.jpg" alt="BLoC Pattern - Compteur" width="300"/>
+  <p><i>Compteur avec gestion d'état BLoC</i></p>
+</div>
+
+<div align="center">
+  <img src="captures/IMG-20251020-WA0004.jpg" alt="BLoC Pattern - Validation" width="300"/>
+  <p><i>Gestion des erreurs et validation des limites</i></p>
+</div>
+
+### Démonstration Method Channels
+
+<div align="center">
+  <img src="captures/IMG-20251020-WA0004.jpg" alt="Method Channels - Infos système" width="300"/>
+  <p><i>Récupération des informations système depuis le code natif Android</i></p>
+</div>
+
+<div align="center">
+  <img src="captures/IMG-20251020-WA0005.jpg" alt="Method Channels - Batterie" width="300"/>
+  <p><i>Niveau de batterie et traitement de données natives</i></p>
+</div>
+
+### Fonctionnalités démontrées
+
+| Capture | Fonctionnalité | Description |
+|---------|----------------|-------------|
+| **1** | Page d'accueil | Navigation entre les démos BLoC et Method Channels |
+| **2** | Compteur BLoC | Incrémentation/Décrémentation avec états et événements |
+| **3** | Validation BLoC | Gestion des limites (min/max) et affichage d'erreurs |
+| **4** | Infos système | Communication Flutter → Android pour récupérer les infos |
+| **5** | Batterie & Traitement | Niveau de batterie + traitement de données natives |
 
 ---
 
